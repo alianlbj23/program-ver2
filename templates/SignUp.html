@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+{% block title %} SignUp {% endblock %}
+{% block content %}
+
+{% if message %}
+    <div class="alert alert-warning">{{ message }}</div>
+{% endif %}
+    <form action = '.' method = 'POST'>
+        {% csrf_token %}
+        <table>
+            {{ signup_form.as_table }}
+        </table>
+        <input type = 'submit' value = '註冊'>
+    </form>
+{% endblock %}
