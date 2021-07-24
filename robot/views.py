@@ -104,6 +104,7 @@ def userinfo(request):
     return render(request, 'userinfo.html', locals())
 
 
+
 # Create your views here.
 
 
