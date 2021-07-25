@@ -25,6 +25,8 @@ def index(request):
         username = request.session['username']
         key = 1
         message = "登入中"
+
+    
     return render(request, 'index.html', locals())
 
 def login(request):
@@ -102,6 +104,11 @@ def userinfo(request):
     usergender = request.session['gender']
     userpassword = request.session['password']
     return render(request, 'userinfo.html', locals())
+
+def userlist(request):
+    users = Userdata.objects.all()
+    return render(request, 'userlist.html', locals())
+
 
 
 
