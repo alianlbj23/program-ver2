@@ -28,6 +28,9 @@ def index(request):
         if username == None:
             key = 0
             message = '未登入'
+        if username == 'root':
+            root = 1
+            message = "管理員登入"
     else:   
         key = 0
         message = '未登入'
@@ -109,9 +112,9 @@ def userinfo(request):
     userpassword = request.session['password']  
     return render(request, 'userinfo.html', locals())
 
-def userdelete(request, password):
+def userdelete(request, name, password):
     request.session['username'] = None
-    user = Userdata.objects.get(password = password)
+    user = Userdata.objects.get(name = name, password = password)
     user.delete()
     return redirect('/')
 

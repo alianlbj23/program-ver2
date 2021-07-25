@@ -23,6 +23,6 @@ urlpatterns = [
     path('Signup/', signup),
     path('userinfo/', userinfo),
     path('userlist/', userlist),
-    path('userdelete/<int:password>/', userdelete),
+    path('userdelete/<str:name>/<int:password>/', userdelete),
     path('admin/', admin.site.urls),
 ]
