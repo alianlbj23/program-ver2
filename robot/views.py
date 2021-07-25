@@ -20,18 +20,22 @@ django.setup()
 
 
 def index(request):
-    key = 0
+    
     if 'username' in request.session:
         username = request.session['username']
         key = 1
         message = "登入中"
-
+        if username == None:
+            key = 0
+            message = '未登入'
+    else:   
+        key = 0
+        message = '未登入'
     
     return render(request, 'index.html', locals())
 
 def login(request):
     if request.method == 'POST':
-        
         login_form = forms.LoginForm(request.POST)
         if login_form.is_valid():
             
@@ -102,8 +106,14 @@ def userinfo(request):
     usermonth = request.session['month']
     userday = request.session['day']
     usergender = request.session['gender']
-    userpassword = request.session['password']
+    userpassword = request.session['password']  
     return render(request, 'userinfo.html', locals())
+
+def userdelete(request, password):
+    request.session['username'] = None
+    user = Userdata.objects.get(password = password)
+    user.delete()
+    return redirect('/')
 
 def userlist(request):
     users = Userdata.objects.all()

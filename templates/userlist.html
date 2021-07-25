@@ -5,8 +5,11 @@
 <table>
     {% for user in users %}
     <tr>
-        <td>{{ user.name}}</td>
+        <td>姓名:{{ user.name}}</td> 
+        <td> 生日:{{ user.year}}/{{ user.month }}/{{ user.day}}</td> 
+        <td> 密碼:{{ user.password}}</td>
     </tr>
+    
     {% endfor %}
 </table>
 
